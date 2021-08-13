@@ -2,7 +2,7 @@
     margin: 50px;
     display: flex;
     justify-content: space-around;
-    background-color: blue;
+    /*background-color: blue;*/
 }
 
 .table {
@@ -19,7 +19,7 @@
     align-items: center;
     flex-direction: column;
     position: absolute;
-    background-color: red;
+    /*background-color: ghostwhite;*/
     min-width: 160px;
     overflow: auto;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
@@ -32,5 +32,29 @@
     width: 500px;
     margin: 5px;
     display: flex;
-    background-color: red;
+    /*background-color: red;*/
+}
+
+table {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid #a5a5a5;
+    border-collapse: collapse;
+}
+
+th {
+    font-weight: bold;
+    padding: 5px;
+    background: #fb99ff;
+    border: 1px solid #a5a5a5;
+}
+
+td {
+    border: 1px solid #a5a5a5;
+    padding: 5px;
+}
+
+tr:nth-child(2n+1) {
+    background: #efefef;
 }

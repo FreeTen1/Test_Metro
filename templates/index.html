@@ -1,0 +1,130 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{% block title %} {% endblock title %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet ">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/simple-sidebar.css' %}" rel="stylesheet">
+
+    <link href="{% static 'my_style.css' %}" rel="stylesheet">
+
+    <link href="{% static 'style_for_graph' %}" rel="stylesheet">
+
+    <link href="{% static 'my_style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="d-flex" id="wrapper">
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span>Привет: {{ user.username }}</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{% url 'account_logout' %}">Выход</a>
+                </div>
+              </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="container-fluid">
+          <div class="work-space">
+              <div class="div-for-toggle-info">
+                  <input class="table dropbtn" type="button" onclick="ShowTableInfo(1)" value="Стол №1">
+                      <div id="myDropdown_1" class="dropdown-content">
+                          <p>Стол №1</p>
+                          <form method="POST">
+                              {% csrf_token %}
+                              <input required style="margin-top: 5px" class = 'input-group-text' type="text" name="surname" placeholder="Введите фамилию">
+                              <input required style="margin-top: 5px" class = 'input-group-text' type="text" name="name" placeholder="Введите имя">
+                              <input required style="margin-top: 5px" class = 'input-group-text' type="text" name="patronymic" placeholder="Введите отчество">
+                              <input required style="display: none" type="number" name="workspace_number" value="1">
+                              <input style="margin-top: 5px" class="btn btn-warning btn-block" type="submit" value="Сохранить за столом №1">
+                          </form>
+                      </div>
+              </div>
+
+              <div class="div-for-toggle-info">
+                  <input class="table dropbtn" type="button" onclick="ShowTableInfo(2)" value="Стол №2">
+                      <div id="myDropdown_2" class="dropdown-content">
+                          <p>Стол №2</p>
+                          <form method="POST">
+                              {% csrf_token %}
+                              <input required style="margin-top: 5px" class = 'input-group-text' type="text" name="surname" placeholder="Введите фамилию">
+                              <input required style="margin-top: 5px" class = 'input-group-text' type="text" name="name" placeholder="Введите имя">
+                              <input required style="margin-top: 5px" class = 'input-group-text' type="text" name="patronymic" placeholder="Введите отчество">
+                              <input required style="display: none" type="number" name="workspace_number" value="2">
+                              <input style="margin-top: 5px" class="btn btn-warning btn-block" type="submit" value="Сохранить за столом №2">
+                          </form>
+                      </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <hr>
+    <table>
+        <tr>
+            <th>Login</th>
+            <th>ФИО</th>
+            <th>Номер стола</th>
+            <th>Дата и время</th>
+        </tr>
+        {% for record in records %}
+        <tr>
+            <td>login</td>
+            <td>{{ record.surname }} {{ record.name }} {{ record.patronymic }}</td>
+            <td>{{ record.workspace_number }}</td>
+            <td>{{ record.date|date:'d.m.Y H:m' }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+  </div>
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <!-- Menu Toggle Script -->
+  <script>
+        $("#menu-toggle").click(function(e) {
+          e.preventDefault();
+          $("#wrapper").toggleClass("toggled");
+        });
+
+        function ShowTableInfo(number) {
+            btn1 =document.getElementById(`myDropdown_${number}`).classList.toggle('show')
+        }
+
+        {#window.onclick = function(event) {#}
+        {#    if (!event.target.matches('.dropbtn')) {#}
+        {#        var dropdowns = document.getElementsByClassName("dropdown-content");#}
+        {#        var i;#}
+        {#        for (i = 0; i < dropdowns.length; i++) {#}
+        {#            var openDropdown = dropdowns[i];#}
+        {#            if (openDropdown.classList.contains('show')) {#}
+        {#                openDropdown.classList.remove('show');#}
+        {#            }#}
+        {#        }#}
+        {#    }#}
+        {#}#}
+  </script>
+
+</body>
+
+</html>
