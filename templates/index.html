@@ -21,7 +21,6 @@
 
     <link href="{% static 'style_for_graph' %}" rel="stylesheet">
 
-    <link href="{% static 'my_style.css' %}" rel="stylesheet">
 </head>
 
 <body>
@@ -49,13 +48,13 @@
                   <input class="workspace dropbtn" type="button" onclick="ShowTableInfo(1)" value="Стол №1">
                       <div id="myDropdown_1" class="dropdown-content">
                           <p>Стол №1</p>
-                          <form method="POST">
+                          <form method="POST" class="dropbtn">
                               {% csrf_token %}
-                              <input required style="margin-top: 5px" class = 'input-group-text' type="text" name="surname" placeholder="Введите фамилию">
-                              <input required style="margin-top: 5px" class = 'input-group-text' type="text" name="name" placeholder="Введите имя">
-                              <input required style="margin-top: 5px" class = 'input-group-text' type="text" name="patronymic" placeholder="Введите отчество">
-                              <input required style="display: none" type="number" name="workspace_number" value="1">
-                              <input style="margin-top: 5px" class="btn btn-warning btn-block" type="submit" value="Сохранить за столом №1">
+                              <input autocomplete="off" required style="margin-top: 5px" class = 'input-group-text' type="text" name="surname" placeholder="Введите фамилию">
+                              <input autocomplete="off" required style="margin-top: 5px" class = 'input-group-text' type="text" name="name" placeholder="Введите имя">
+                              <input autocomplete="off" required style="margin-top: 5px" class = 'input-group-text' type="text" name="patronymic" placeholder="Введите отчество">
+                              <input autocomplete="off" required style="display: none" type="number" name="workspace_number" value="1">
+                              <input style="margin-top: 5px" class="btn btn-warning btn-block save" type="submit" value="Сохранить за столом №1">
                           </form>
                       </div>
               </div>
@@ -66,10 +65,10 @@
                           <p>Стол №2</p>
                           <form method="POST">
                               {% csrf_token %}
-                              <input required style="margin-top: 5px" class = 'input-group-text' type="text" name="surname" placeholder="Введите фамилию">
-                              <input required style="margin-top: 5px" class = 'input-group-text' type="text" name="name" placeholder="Введите имя">
-                              <input required style="margin-top: 5px" class = 'input-group-text' type="text" name="patronymic" placeholder="Введите отчество">
-                              <input required style="display: none" type="number" name="workspace_number" value="2">
+                              <input autocomplete="off" required style="margin-top: 5px" class = 'input-group-text' type="text" name="surname" placeholder="Введите фамилию">
+                              <input autocomplete="off" required style="margin-top: 5px" class = 'input-group-text' type="text" name="name" placeholder="Введите имя">
+                              <input autocomplete="off" required style="margin-top: 5px" class = 'input-group-text' type="text" name="patronymic" placeholder="Введите отчество">
+                              <input autocomplete="off" required style="display: none" type="number" name="workspace_number" value="2">
                               <input style="margin-top: 5px" class="btn btn-warning btn-block" type="submit" value="Сохранить за столом №2">
                           </form>
                       </div>
@@ -108,21 +107,27 @@
         });
 
         function ShowTableInfo(number) {
+            let dropdowns = document.getElementsByClassName("dropdown-content");
+            for (let i = 0; i < dropdowns.length; i++) {
+                let openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
             btn1 =document.getElementById(`myDropdown_${number}`).classList.toggle('show')
         }
 
-        {#window.onclick = function(event) {#}
-        {#    if (!event.target.matches('.dropbtn')) {#}
-        {#        var dropdowns = document.getElementsByClassName("dropdown-content");#}
-        {#        var i;#}
-        {#        for (i = 0; i < dropdowns.length; i++) {#}
-        {#            var openDropdown = dropdowns[i];#}
-        {#            if (openDropdown.classList.contains('show')) {#}
-        {#                openDropdown.classList.remove('show');#}
-        {#            }#}
-        {#        }#}
-        {#    }#}
-        {#}#}
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropbtn') && !event.target.matches('.input-group-text') && !event.target.matches('.save')) {
+                let dropdowns = document.getElementsByClassName("dropdown-content");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    let openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
   </script>
 
 </body>
