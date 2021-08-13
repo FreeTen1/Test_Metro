@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.http import HttpResponseRedirect
 from django.utils.decorators import method_decorator
 from django.views.generic import ListView
 
@@ -13,5 +13,11 @@ class index(ListView):
     context_object_name = 'records'
 
     def post(self, request, *args, **kwargs):
-        print(request.POST['name'], request.POST['surname'], request.POST['patronymic'], request.POST['workspace_number'])
-        return super().get(request, *args, **kwargs)
+        login = self.request.user
+        name = request.POST['name']
+        surname = request.POST['surname']
+        patronymic = request.POST['patronymic']
+        workspace_number = int(request.POST['workspace_number'])
+        worker = LogInfo(login=login, name=name, surname=surname, patronymic=patronymic, workspace_number=workspace_number)
+        worker.save()
+        return HttpResponseRedirect("/")

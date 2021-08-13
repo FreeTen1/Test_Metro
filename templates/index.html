@@ -89,10 +89,10 @@
         </tr>
         {% for record in records %}
         <tr>
-            <td>login</td>
+            <td>{{ record.login  }}</td>
             <td>{{ record.surname }} {{ record.name }} {{ record.patronymic }}</td>
             <td>{{ record.workspace_number }}</td>
-            <td>{{ record.date|date:'d.m.Y H:m' }}</td>
+            <td>{{ record.date|date:'d.m.Y H:i' }}</td>
         </tr>
         {% endfor %}
     </table>
