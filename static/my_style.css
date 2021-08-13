@@ -1,0 +1,36 @@
+.work-space {
+    margin: 50px;
+    display: flex;
+    justify-content: space-around;
+    background-color: blue;
+}
+
+.table {
+    width: 500px;
+    height: 250px;
+    background-color: #ff8f1a;
+}
+
+.dropdown-content {
+    padding: 10px;
+    margin: 0 10%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    background-color: red;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.show {display: flex;}
+
+.div-for-toggle-info{
+    width: 500px;
+    margin: 5px;
+    display: flex;
+    background-color: red;
+}
