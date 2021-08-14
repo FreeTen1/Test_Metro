@@ -13,7 +13,8 @@
 
 .dropdown-content {
     padding: 10px;
-    margin: 10px 8%;
+    margin-top: 10px;
+    margin-left: 135px;
     display: none;
     justify-content: center;
     align-items: center;
